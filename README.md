@@ -6,8 +6,14 @@
 ## Development
 
 ```sh
-# development
+# requirements
+$ cargo install sqlx-cli
+$ cargo install cargo-watch
+
+# run development server
 $ docker compose up -d
+$ make db_setup
+$ cargo watch -x run
 
 # run test
 $ make test_db_setup
