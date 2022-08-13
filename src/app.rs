@@ -16,6 +16,8 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
             // Get a pointer copy and attach it to the application state
             .app_data(db_pool.clone())
     })
+    // NOTE: The reason I use listen instead of bind is because I use random ports in my tests.
+    // See. https://www.lpalmieri.com/posts/2020-08-09-zero-to-production-3-how-to-bootstrap-a-new-rust-web-api-from-scratch/#4-5-2-choosing-a-random-port
     .listen(listener)?
     .run();
     Ok(server)
